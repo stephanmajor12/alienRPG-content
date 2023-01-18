@@ -1,0 +1,1 @@
+SKILL.name = "Ranged Combat"
