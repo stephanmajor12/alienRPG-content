@@ -1,1 +1,1 @@
-SKILL.name = "Command"
+SKILL.name = "NOTCommand"

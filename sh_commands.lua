@@ -34,6 +34,7 @@ ix.command.Add("RollStat", {
 	OnRun = function(self, client, stat)
 		local character = client:GetCharacter()
 		local statname
+		local statnameExtra
 		local bonus = 0
 
 		for k, v in pairs(ix.attributes.list) do
@@ -50,6 +51,7 @@ ix.command.Add("RollStat", {
 					stat = k
 					statname = v.name
 					bonus = character:GetSkill(stat, 0)
+					statnameExtra = v.name
 				end
 			end
 		end
@@ -60,7 +62,7 @@ ix.command.Add("RollStat", {
 			local roll1 = tostring(math.random(1, 6))
 			local roll2 = tostring(math.random(1, 6))
 
-			ix.chat.Send(client, "roll20", (roll1 + roll2 + bonus).." ( "..roll1.." + "..roll2.." + "..bonus.." )", nil, nil, {
+			ix.chat.Send(client, "roll20", (roll1 + roll2 + bonus).." ( "..roll1.." + "..roll2.." + "..bonus.." )" ..statnameExtra, nil, nil, {
 				rolltype = statname
 			})
 		end
