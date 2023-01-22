@@ -229,7 +229,11 @@ ix.command.Add("Injury", {
 		local resultStr = ""
 		local character = client:GetCharacter()
 		local statname
-		local myStat
+		local myStat1
+		local myStat2
+		local myAmount
+
+
 		local myInjuries = {
 			"become Winded (STRESS LEVEL +1)",
 			"become Stunned (STRESS LEVEL +1)",
@@ -278,15 +282,6 @@ ix.command.Add("Injury", {
 			end
 		end
 
-		myStat = "Comtech"
-
-		for k, v in pairs(ix.skills.list) do
-			if ix.util.StringMatches(k, myStat) or ix.util.StringMatches(v.name, myStat) then
-				myStat = k
-				character:UpdateSkill(myStat, -1)
-			end
-		end
-
 		resultStr = myInjuries[roll]
 		ix.chat.Send(client, "Injury Roll", (roll).." ( "..roll..") they.12221"..resultStr, nil, nil, {
 		})
@@ -294,10 +289,49 @@ ix.command.Add("Injury", {
 		
 		if roll <= 3 then
 			character:UpdateAttrib("stress",1)
+		elseif roll == 4 then
+			myStat1 = "Mobility"
+			myAmount = -2
+		elseif roll == 5 then
+			myAmount = 0 
+			--[[temporary Observation -2]]--
+			--[[temporary Ranged Combat -2]]--
+		elseif roll == 6 then
+			myStat1 = "Mobility"
+			myAmount = -2
+		elseif roll == 7 then
+			character:UpdateAttrib("stress",1)
+			myStat1 = "Observation"
+			myAmount = -2
+		elseif roll == 8 then
+			myAmount = 0 --[[temporary mob -2]]--
+		elseif roll == 10 then
+			myAmount = -2
+			myStat1 = "Manipulation"
+			myStat2 = "Command"
+		elseif roll == 11 then
+			--[[temporary mob -2]]--
+			myAmount = -2
+		elseif roll == 13 then
+			myAmount = -1
+			myStat1 = "Manipulation"
+			myStat2 = "Observation"
+		elseif roll == 14 then
+			myStat1 = "Mobility"
+			myAmount = -2
+		elseif roll == 15
 		elseif roll > 20 then
-			character:GetSkill(stat, 0)
+
 		else
 			roll = 9
+		end
+
+
+		for k, v in pairs(ix.skills.list) do
+			if ix.util.StringMatches(k, myStat) or ix.util.StringMatches(v.name, myStat) then
+				myStat = k
+				character:UpdateSkill(myStat1, myAmount)
+			end
 		end
 	end
 })
