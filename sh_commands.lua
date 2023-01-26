@@ -319,7 +319,18 @@ ix.command.Add("Injury", {
 		elseif roll == 14 then
 			myStat1 = "Mobility"
 			myAmount = -2
-		elseif roll == 15
+		elseif roll == 15 then
+			myAmount = -2
+			myStat1 = "Mobility"
+			myStat2 = "Close Combat"
+		elseif roll == 16 then
+			myAmount = -2
+			myStat1 = "Ranged Combat"
+			myStat2 = "Observation"
+			--[[perma]]--
+		elseif roll == 17 then
+			myAmount = -1
+			--[[temp mobility]]
 		elseif roll > 20 then
 
 		else
